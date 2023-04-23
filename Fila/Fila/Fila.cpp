@@ -59,7 +59,7 @@ void menu()
 void inicializar()
 {
 
-	// se a lista j� possuir elementos
+	// se a lista já possuir elementos
 	// libera a memoria ocupada
 	NO* aux = inicio;
 	while (aux != NULL) {
@@ -87,6 +87,21 @@ void insere()
 	cout << "Digite o elemento: ";
 	cin >> novo->valor;
 	novo->prox = NULL;
+	
+	// Se a fila estiver vazia, o novo elemento será o inicio e o fim
+if (inicio == NULL) {
+	inicio = novo;
+	fim = novo;
+}
+// Se a fila não estiver vazia, adiciona o novo elemento no final da fila
+else {
+	fim->prox = novo;
+	fim = novo;
+}
+
+cout << "Elemento inserido com sucesso! \n";
+	
+	
 
 
 }
@@ -94,7 +109,22 @@ void insere()
 void remove()
 {
 
+    int valorRemovido = inicio->valor;
 
-
+// Se a fila tiver somente 1 elemento, atualiza o inicio e o fim para NULL
+if (inicio == fim) {
+	NO* paraExcluir = inicio;
+	inicio = NULL;
+	fim = NULL;
+	free(paraExcluir);
+}
+// Se a fila tiver mais de 1 elemento, atualiza o inicio
+else {
+	NO* paraExcluir = inicio;
+	inicio = inicio->prox;
+	free(paraExcluir);
 }
 
+cout << "Elemento " << valorRemovido << " removido com sucesso! \n";
+
+}
